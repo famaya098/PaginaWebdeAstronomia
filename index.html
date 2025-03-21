@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronomía Para Todos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #121212;
+            color: #ffffff;
+        }
+        
+        header {
+            background: linear-gradient(to right, #1a237e, #000000);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+            text-decoration: none;
+        }
+        
+        .menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .menu li {
+            margin-left: 20px;
+        }
+        
+        .menu a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .menu a:hover {
+            color: #5e72e4;
+        }
+        
+        .hero {
+            background-image: url('/api/placeholder/1200/500');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #5e72e4;
+            color: #ffffff;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #3f51b5;
+        }
+        
+        .section {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: #5e72e4;
+        }
+        
+        .section-header p {
+            font-size: 18px;
+            color: #b0b0b0;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .planets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .planet-card {
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .planet-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .planet-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .planet-card-content {
+            padding: 20px;
+        }
+        
+        .planet-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #5e72e4;
+        }
+        
+        .planet-card p {
+            color: #b0b0b0;
+            margin-bottom: 15px;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 250px;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            border-radius: 5px;
+        }
+        
+        textarea.form-control {
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        footer {
+            background-color: #1e1e1e;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .social-links {
+            margin-bottom: 20px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #5e72e4;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #ffffff;
+        }
+        
+        .copyright {
+            color: #b0b0b0;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .section {
+                margin: 50px auto;
+            }
+            
+            .section-header h2 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabecera -->
+    <header>
+        <nav>
+            <a href="#" class="logo">AstroWeb</a>
+            <ul class="menu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#planetas">Planetas</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Sección Inicio -->
+    <section id="inicio" class="hero">
+        <h1>Descubre el Universo</h1>
+        <p>Explora los misterios del cosmos y aprende sobre los cuerpos celestes que componen nuestro sistema solar y más allá.</p>
+        <a href="#planetas" class="btn">Comenzar Exploración</a>
+    </section>
+    
+    <!-- Sección Planetas -->
+    <section id="planetas" class="section">
+        <div class="section-header">
+            <h2>Nuestro Sistema Solar</h2>
+            <p>Conoce los ocho planetas que orbitan alrededor de nuestra estrella, el Sol, y sus características más importantes.</p>
+        </div>
+        
+        <div class="planets-grid">
+            <div class="planet-card">
+                <img src="/api/placeholder/400/200" alt="Mercurio">
+                <div class="planet-card-content">
+                    <h3>Mercurio</h3>
+                    <p>El planeta más pequeño y cercano al Sol, con temperaturas extremas que van desde los 430°C durante el día hasta los -180°C por la noche.</p>
+                    <a href="#" class="btn">Más información</a>
+                </div>
+            </div>
+            
+            <div class="planet-card">
+                <img src="/api/placeholder/400/200" alt="Venus">
+                <div class="planet-card-content">
+                    <h3>Venus</h3>
+                    <p>Considerado el "gemelo" de la Tierra por su tamaño similar, pero con una atmósfera densa de dióxido de carbono y temperaturas abrasadoras.</p>
+                    <a href="#" class="btn">Más información</a>
+                </div>
+            </div>
+            
+            <div class="planet-card">
+                <img src="/api/placeholder/400/200" alt="Tierra">
+                <div class="planet-card-content">
+                    <h3>Tierra</h3>
+                    <p>Nuestro hogar, el único planeta conocido que alberga vida, con una atmósfera rica en oxígeno y abundante agua líquida en su superficie.</p>
+                    <a href="#" class="btn">Más información</a>
+                </div>
+            </div>
+            
+            <div class="planet-card">
+                <img src="/api/placeholder/400/200" alt="Marte">
+                <div class="planet-card-content">
+                    <h3>Marte</h3>
+                    <p>El "planeta rojo", objetivo de numerosas misiones espaciales en busca de evidencias de vida pasada o presente en su superficie o subsuelo.</p>
+                    <a href="#" class="btn">Más información</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección Galería -->
+    <section id="galeria" class="section">
+        <div class="section-header">
+            <h2>Galería Cósmica</h2>
+            <p>Imágenes impresionantes del espacio capturadas por telescopios y sondas espaciales.</p>
+        </div>
+        
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="/api/placeholder/400/300" alt="Nebulosa">
+                <div class="gallery-caption">
+                    <h3>Nebulosa del Águila</h3>
+                    <p>Una región de formación estelar a 6.500 años luz de la Tierra.</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="/api/placeholder/400/300" alt="Galaxia">
+                <div class="gallery-caption">
+                    <h3>Galaxia Andrómeda</h3>
+                    <p>La galaxia espiral más cercana a la Vía Láctea.</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="/api/placeholder/400/300" alt="Agujero Negro">
+                <div class="gallery-caption">
+                    <h3>M87</h3>
+                    <p>Primera imagen de un agujero negro supermasivo.</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="/api/placeholder/400/300" alt="Vía Láctea">
+                <div class="gallery-caption">
+                    <h3>Centro Galáctico</h3>
+                    <p>El corazón de nuestra galaxia, la Vía Láctea.</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="/api/placeholder/400/300" alt="Estación Espacial">
+                <div class="gallery-caption">
+                    <h3>Estación Espacial Internacional</h3>
+                    <p>Laboratorio orbital que orbita a 400 km sobre la Tierra.</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="/api/placeholder/400/300" alt="Saturno">
+                <div class="gallery-caption">
+                    <h3>Anillos de Saturno</h3>
+                    <p>El sistema de anillos más espectacular del sistema solar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección Contacto -->
+    <section id="contacto" class="section">
+        <div class="section-header">
+            <h2>Contacto</h2>
+            <p>¿Tienes preguntas sobre astronomía? ¡Contáctanos y te responderemos lo antes posible!</p>
+        </div>
+        
+        <form class="contact-form">
+            <div class="form-group">
+                <label for="name">Nombre</label>
+                <input type="text" id="name" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Correo Electrónico</label>
+                <input type="email" id="email" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="subject">Asunto</label>
+                <input type="text" id="subject" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Mensaje</label>
+                <textarea id="message" class="form-control" required></textarea>
+            </div>
+            
+            <button type="submit" class="btn">Enviar Mensaje</button>
+        </form>
+    </section>
+    
+    <!-- Pie de página -->
+    <footer>
+        <div class="social-links">
+            <!-- Usaríamos íconos aquí, pero los sustituyo por texto para simplificar -->
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+            <a href="#">YouTube</a>
+        </div>
+        
+        <p class="copyright">© 2025 AstroWeb - Todos los derechos reservados | Sitio creado con fines educativos</p>
+    </footer>
+</body>
+</html>
